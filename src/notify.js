@@ -100,7 +100,7 @@
 		}
 	};
 
-	var addStyle = function(name, def) {
+	var addStyle = function(name, def, disableWarning) {
 		if (!name) {
 			throw "Missing Style name";
 		}
@@ -113,7 +113,7 @@
 		//remove existing style
 		var existing = styles[name];
 		if (existing && existing.cssElem) {
-			if (window.console) {
+			if (!disableWarning) {
 				console.warn(pluginName + ": overwriting style '" + name + "'");
 			}
 			styles[name].cssElem.remove();
@@ -454,18 +454,22 @@
 	};
 
 	Notification.prototype.getStyle = function(name) {
-		var style;
-		if (!name) {
-			name = this.options.style;
-		}
-		if (!name) {
-			name = "default";
-		}
-		style = styles[name];
-		if (!style) {
-			throw "Missing style: " + name;
-		}
-		return style;
+		var style, _style = this.options.style;
+	    if (!name) {
+	        name = typeof _style.name === "string" && _style.name || typeof _style === "string" && _style;
+	    }
+	    if (!name) {
+	        name = "default";
+	    }
+	    style = styles[name];
+	    if (typeof _style === "object") {
+	        style = $.extend(true, style, _style);
+			addStyle(style.name, style, true);
+	    }
+	    if (!style) {
+	        throw "Missing style: " + name;
+	    }
+	    return style;
 	};
 
 	Notification.prototype.updateClasses = function() {

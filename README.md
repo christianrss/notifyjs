@@ -19,10 +19,27 @@ Generate a minified file: dist/notify.min.js
 grunt uglify
 ```
 
-Generate a release file: dist/notifyjs-browser-*.*.*.zip
+Generate a release file: dist/notifyjs-browser-*.zip
 ```
 grunt release
 ```
+
+## Override properties of style
+```
+$.notify("Message", {
+    ...
+    style: {
+        name: "bootstrap",
+        classes: {
+            base: {
+                "white-space": "normal"
+            }
+        }
+    }
+    ...
+});
+```
+
 ----
 
 Notify.js is released under the [MIT License](https://opensource.org/licenses/MIT).
