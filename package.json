@@ -14,15 +14,18 @@
   ],
   "homepage": "http://notifyjs.com/",
   "license": "MIT",
-  "main": "dist/notify.js",
+  "main": "src/notify.js",
   "scripts": {
     "test": "npm run lint",
-    "lint": "jshint ./dist/*.js"
+    "lint": "jshint ./src/*.js"
   },
   "peerDependencies": {
     "jquery": ">=1.11.0"
   },
   "devDependencies": {
+    "grunt": "^1.0.1",
+	"grunt-contrib-compress": "1.2.0",
+    "grunt-contrib-uglify": "^1.0.1",
     "jshint": "^2.8.0"
   },
   "keywords": [

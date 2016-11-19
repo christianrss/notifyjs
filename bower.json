@@ -6,7 +6,7 @@
     "Jaime Pillora <dev@jpillora.com>"
   ],
   "description": "A simple, versatile notification library",
-  "main": "dist/notify.js",
+  "main": "src/notify.js",
   "keywords": [
     "notification"
   ],
